@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Developing Data Products</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Developing Data Products">
+  <meta name="author" content="G. Nevado">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/prettify/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Developing Data Products</h1>
+    <h2>Project on shiny and slidify</h2>
+    <p>G. Nevado<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Project goals</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;' class='centered'>
+  <h3>Shiny application</h3>
+
+<p>Write a shiny application with supporting documentation and deploy (and share) it on Rstudio&#39;s shiny server. 
+Submit code server.R and ui.R to github.
+The application must have:</p>
+
+<ul>
+<li>Some form of input (textbox, radio button, checkbox, ...)</li>
+<li>Some operation on the ui input in sever.R</li>
+<li>Some reactive output displayed as a result of server calculations</li>
+<li>Enough user documentation</li>
+</ul>
+
+</div>
+<div style='float:right;width:48%;'>
+  <h3>Reproducible Pitch Presentation</h3>
+
+<p>To pitch the idea, write a presentation that must satisfy the following:</p>
+
+<ul>
+<li>Done in Slidify or Rstudio Presenter</li>
+<li>5 pages length</li>
+<li>Hosted on github or Rpubs</li>
+<li>Contains some embedded R code that gets run when slidifying the document</li>
+</ul>
+
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Application layout</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This application predicts the specie of an iris plant from the values of Sepal length (4.3 to 7.9 cm), Sepal width (2.0 to 4.4 cm), Petal length (1.0 to 6.9 cm), Petal width (0.1 to 2.5 cm).
+The prediction model was trained using the Iris dataset and saved to an RDS file that is read by application.</p>
+
+<p>Side panel: Values for the variables can be set using sliders, with minimum, maximum and default values. After setting values, submit button must be pressed to predict specie based on input values.</p>
+
+<p>Main panel: Has 3 tabs to display results, trained model and documentation.</p>
+
+<p>Tab 1: Result of prediction. Input values and the result of prediction are displayed and updated after submit button is pushed.<br>
+Tab 2: Train model. The train model is displayed. The model was trained using a CART algorithm with default control values, and saved to an RDS file that is read when application starts.<br>
+Tab 3: Train model. Support documentation (this text) is displayed.   </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Application layout (II)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="app.jpg" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Prediction Model</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The model used for prediction was trained with a CART algorithm, with default control settings.</p>
+
+<pre><code class="r">library(caret)
+iris_modelRPART &lt;- readRDS(&quot;iris-dataset.RDS&quot;)
+iris_modelRPART$finalModel
+</code></pre>
+
+<p>n= 120 </p>
+
+<p>node), split, n, loss, yval, (yprob)
+      * denotes terminal node</p>
+
+<p>1) root 120 80 setosa (0.33333333 0.33333333 0.33333333)<br>
+  2) Petal.Length&lt; 2.45 40  0 setosa (1.00000000 0.00000000 0.00000000) *
+  3) Petal.Length&gt;=2.45 80 40 versicolor (0.00000000 0.50000000 0.50000000)<br>
+    6) Petal.Length&lt; 4.95 41  3 versicolor (0.00000000 0.92682927 0.07317073) *
+    7) Petal.Length&gt;=4.95 39  2 virginica (0.00000000 0.05128205 0.94871795) *</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Project goals'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Application layout'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Application layout (II)'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Prediction Model'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- Google Prettify -->
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"></script>
+  <script src='libraries/highlighters/prettify/js/lang-r.js'></script>
+  <script>
+    var pres = document.getElementsByTagName("pre");
+    for (var i=0; i < pres.length; ++i) {
+      pres[i].className = "prettyprint linenums";
+    }
+    prettyPrint();
+  </script>
+  <!-- End Google Prettify --> 
+  </html>

@@ -52,7 +52,7 @@ Tab 3: Train model. Support documentation (this text) is displayed.
 ## Application layout (II)
 
 
-<img src="./app.jpg" />
+<img src='./app.jpg' />
 
 --- 
 

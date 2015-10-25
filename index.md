@@ -52,21 +52,16 @@ Tab 3: Train model. Support documentation (this text) is displayed.
 ## Application layout (II)
 
 
-<img src="app.jpg" />
+<img src="./app.jpg" />
 
 --- 
 
-
-
 ## Prediction Model  
-
-The model used for prediction was trained with a CART algorithm, with default control settings.
-
+The model used for prediction was trained with a CART algorithm, with default control settings. R code of final model and execution of the code are displyed next.
 
 ```r
-library(caret)
-iris_modelRPART <- readRDS("iris-dataset.RDS")
-iris_modelRPART$finalModel
+library(caret); library(lattice); library(ggplot2)
+iris_modelRPART <- readRDS("iris-dataset.RDS"); iris_modelRPART$finalModel
 ```
 
 n= 120 
